@@ -1,0 +1,14 @@
+{
+  "name": "sylvainduval/dynamic-db-bundle",
+  "description": "Build and edit your database schema with PHP.",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "SylvainDuval\\DynamicDbBundle\\": "src/DynamicDbBundle/"
+    }
+  },
+  "require": {
+    "php": ">=8.4"
+  }
+}
