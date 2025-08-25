@@ -6,7 +6,7 @@ namespace SylvainDuval\DynamicDbBundle\Schema\MySql\Field;
 
 use InvalidArgumentException;
 use SylvainDuval\DynamicDbBundle\Domain\Field\FieldInterface;
-use SylvainDuval\DynamicDbBundle\Domain\Field\NumericField;
+use SylvainDuval\DynamicDbBundle\Domain\Field\Numeric;
 use SylvainDuval\DynamicDbBundle\Schema\FieldDefinitionGeneratorInterface;
 
 /**
@@ -16,8 +16,8 @@ final class NumericFieldGenerator implements FieldDefinitionGeneratorInterface
 {
 	public function generateFieldDefinition(FieldInterface $field): string
 	{
-		if (!$field instanceof NumericField) {
-			throw new InvalidArgumentException('Expected ' . $field::class);
+		if (!$field instanceof Numeric) {
+			throw new InvalidArgumentException('Expected Numeric, found ' . $field::class);
 		}
 
 		$definition = $field->name . ' ' . $this->generateFieldType($field);
@@ -38,7 +38,7 @@ final class NumericFieldGenerator implements FieldDefinitionGeneratorInterface
 		return $definition;
 	}
 
-	private function generateFieldType(NumericField $field): string
+	private function generateFieldType(Numeric $field): string
 	{
 		$min = $field->min;
 		$max = $field->max;
@@ -70,7 +70,7 @@ final class NumericFieldGenerator implements FieldDefinitionGeneratorInterface
 		};
 	}
 
-	private function getPrecision(NumericField $field): int
+	private function getPrecision(Numeric $field): int
 	{
 		return \strlen((string) $field->max) + $field->decimals;
 	}

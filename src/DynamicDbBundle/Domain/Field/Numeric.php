@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SylvainDuval\DynamicDbBundle\Domain\Field;
 
-final readonly class NumericField implements FieldInterface
+final readonly class Numeric implements FieldInterface
 {
 	public function __construct(
 		public string $name,

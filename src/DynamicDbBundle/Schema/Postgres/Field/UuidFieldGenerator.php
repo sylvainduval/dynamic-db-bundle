@@ -6,7 +6,7 @@ namespace SylvainDuval\DynamicDbBundle\Schema\Postgres\Field;
 
 use InvalidArgumentException;
 use SylvainDuval\DynamicDbBundle\Domain\Field\FieldInterface;
-use SylvainDuval\DynamicDbBundle\Domain\Field\UuidField;
+use SylvainDuval\DynamicDbBundle\Domain\Field\Uuid;
 use SylvainDuval\DynamicDbBundle\Schema\Postgres\FieldGeneratorInterface;
 
 /**
@@ -16,8 +16,8 @@ final class UuidFieldGenerator implements FieldGeneratorInterface
 {
 	public function generateFieldDefinition(FieldInterface $field): string
 	{
-		if (!$field instanceof UuidField) {
-			throw new InvalidArgumentException('Expected ' . $field::class);
+		if (!$field instanceof Uuid) {
+			throw new InvalidArgumentException('Expected Uuid, found ' . $field::class);
 		}
 
 		$fieldDefinition = $field->name . ' ' . $this->generateFieldType($field);
@@ -31,8 +31,8 @@ final class UuidFieldGenerator implements FieldGeneratorInterface
 
 	public function generateFieldDefaultValue(FieldInterface $field): string
 	{
-		if (!$field instanceof UuidField) {
-			throw new InvalidArgumentException('Expected ' . $field::class);
+		if (!$field instanceof Uuid) {
+			throw new InvalidArgumentException('Expected Uuid, found ' . $field::class);
 		}
 
 		if ($field->default === null && $field->nullable) {

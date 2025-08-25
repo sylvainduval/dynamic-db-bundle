@@ -41,25 +41,25 @@ class DynamicDbBundle
 			'ma_table',
 			new Domain\Options\MariaDb\TableOptions(false, 'InnoDB'),
 			[
-				new Domain\Field\TextField('first_field', 5, true, true, 'abcde'),
+				new Domain\Field\Text('first_field', 5, true, true, 'abcde'),
 			]
 		);
 
 		$this
 			->createDatabase($database)
 			->createTable($table)
-			->createField($table, new Domain\Field\TextField('second_field'))
+			->createField($table, new Domain\Field\Text('second_field'))
 			->renameField($table, 'second_field', 'third_field')
 			->changeField(
 				$table,
-				new Domain\Field\TextField('third_field'),
-				new Domain\Field\TextField('third_field', 100, false, true, 'ici')
+				new Domain\Field\Text('third_field'),
+				new Domain\Field\Text('third_field', 100, false, true, 'ici')
 			)
 			->deleteField($table, 'third_field')
-			->createField($table, new Domain\Field\NumericField('fourth_field'))
-			->createField($table, new Domain\Field\NumericField('fifth_field', 10, 800000, 2, false, true))
-			->createField($table, new Domain\Field\NumericField('id', 0, 10000000, 0, true))
-			->createField($table, new Domain\Field\UuidField('uuid', true, '877fd663-5e95-495b-80a1-000c2d38122d'))
+			->createField($table, new Domain\Field\Numeric('fourth_field'))
+			->createField($table, new Domain\Field\Numeric('fifth_field', 10, 800000, 2, false, true))
+			->createField($table, new Domain\Field\Numeric('id', 0, 10000000, 0, true))
+			->createField($table, new Domain\Field\Uuid('uuid', true, '877fd663-5e95-495b-80a1-000c2d38122d'))
 			->createField($table, new Domain\Field\Boolean('oui_non', true, true))
 			->deleteTable($table)
 			->deleteDatabase($database)
@@ -92,25 +92,25 @@ class DynamicDbBundle
 			'ma_table',
 			new Domain\Options\Postgres\TableOptions(false),
 			[
-				new Domain\Field\TextField('first_field', 5, true, true, 'abcde'),
+				new Domain\Field\Text('first_field', 5, true, true, 'abcde'),
 			]
 		);
 
 		$this
 			->createDatabase($database)
 			->createTable($table)
-			->createField($table, new Domain\Field\TextField('second_field'))
+			->createField($table, new Domain\Field\Text('second_field'))
 			->renameField($table, 'second_field', 'third_field')
 			->changeField(
 				$table,
-				new Domain\Field\TextField('third_field'),
-				new Domain\Field\TextField('third_field', 100, default: 'ici')
+				new Domain\Field\Text('third_field'),
+				new Domain\Field\Text('third_field', 100, default: 'ici')
 			)
 			->deleteField($table, 'third_field')
-			->createField($table, new Domain\Field\NumericField('fourth_field'))
-			->createField($table, new Domain\Field\NumericField('fifth_field', 10, 800000, 2, false, true))
-			->createField($table, new Domain\Field\NumericField('id', 0, 10000000, 0, true))
-			->createField($table, new Domain\Field\UuidField('uuid', true, '877fd663-5e95-495b-80a1-000c2d38122d'))
+			->createField($table, new Domain\Field\Numeric('fourth_field'))
+			->createField($table, new Domain\Field\Numeric('fifth_field', 10, 800000, 2, false, true))
+			->createField($table, new Domain\Field\Numeric('id', 0, 10000000, 0, true))
+			->createField($table, new Domain\Field\Uuid('uuid', true, '877fd663-5e95-495b-80a1-000c2d38122d'))
 			->createField($table, new Domain\Field\Boolean('oui_non', true, true))
 			->deleteTable($table)
 			->deleteDatabase($database)

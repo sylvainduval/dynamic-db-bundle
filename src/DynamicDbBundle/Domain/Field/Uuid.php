@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SylvainDuval\DynamicDbBundle\Domain\Field;
 
-final readonly class UuidField implements FieldInterface
+final readonly class Uuid implements FieldInterface
 {
 	public function __construct(
 		public string $name,

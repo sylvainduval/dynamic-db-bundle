@@ -6,7 +6,7 @@ namespace SylvainDuval\DynamicDbBundle\Schema\MySql\Field;
 
 use InvalidArgumentException;
 use SylvainDuval\DynamicDbBundle\Domain\Field\FieldInterface;
-use SylvainDuval\DynamicDbBundle\Domain\Field\TextField;
+use SylvainDuval\DynamicDbBundle\Domain\Field\Text;
 use SylvainDuval\DynamicDbBundle\Schema\FieldDefinitionGeneratorInterface;
 
 /**
@@ -16,8 +16,8 @@ final class TextFieldGenerator implements FieldDefinitionGeneratorInterface
 {
 	public function generateFieldDefinition(FieldInterface $field): string
 	{
-		if (!$field instanceof TextField) {
-			throw new InvalidArgumentException('Expected ' . $field::class);
+		if (!$field instanceof Text) {
+			throw new InvalidArgumentException('Expected Text, found ' . $field::class);
 		}
 
 		$fieldDefinition = $field->name . ' ' . $this->generateFieldType($field);
@@ -34,7 +34,7 @@ final class TextFieldGenerator implements FieldDefinitionGeneratorInterface
 		return $fieldDefinition;
 	}
 
-	private function generateFieldType(TextField $field): string
+	private function generateFieldType(Text $field): string
 	{
 		$textTypes = [
 			255 => 'TINYTEXT',

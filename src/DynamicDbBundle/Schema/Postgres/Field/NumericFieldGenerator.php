@@ -6,7 +6,7 @@ namespace SylvainDuval\DynamicDbBundle\Schema\Postgres\Field;
 
 use InvalidArgumentException;
 use SylvainDuval\DynamicDbBundle\Domain\Field\FieldInterface;
-use SylvainDuval\DynamicDbBundle\Domain\Field\NumericField;
+use SylvainDuval\DynamicDbBundle\Domain\Field\Numeric;
 use SylvainDuval\DynamicDbBundle\Schema\Postgres\FieldGeneratorInterface;
 
 /**
@@ -16,8 +16,8 @@ final class NumericFieldGenerator implements FieldGeneratorInterface
 {
 	public function generateFieldDefinition(FieldInterface $field): string
 	{
-		if (!$field instanceof NumericField) {
-			throw new InvalidArgumentException('Expected ' . $field::class);
+		if (!$field instanceof Numeric) {
+			throw new InvalidArgumentException('Expected Numeric, found ' . $field::class);
 		}
 
 		$definition = $field->name . ' ' . $this->generateFieldType($field);
@@ -33,8 +33,8 @@ final class NumericFieldGenerator implements FieldGeneratorInterface
 
 	public function generateFieldDefaultValue(FieldInterface $field): string
 	{
-		if (!$field instanceof NumericField) {
-			throw new InvalidArgumentException('Expected ' . $field::class);
+		if (!$field instanceof Numeric) {
+			throw new InvalidArgumentException('Expected Numeric, found ' . $field::class);
 		}
 
 		if ($field->default === null && $field->nullable) {
@@ -49,8 +49,8 @@ final class NumericFieldGenerator implements FieldGeneratorInterface
 
 	public function generateFieldType(FieldInterface $field): string
 	{
-		if (!$field instanceof NumericField) {
-			throw new InvalidArgumentException('Expected ' . $field::class);
+		if (!$field instanceof Numeric) {
+			throw new InvalidArgumentException('Expected Numeric, found ' . $field::class);
 		}
 
 		if ($field->autoIncrement) {
@@ -80,7 +80,7 @@ final class NumericFieldGenerator implements FieldGeneratorInterface
 		};
 	}
 
-	private function getPrecision(NumericField $field): int
+	private function getPrecision(Numeric $field): int
 	{
 		return \strlen((string) $field->max) + $field->decimals;
 	}

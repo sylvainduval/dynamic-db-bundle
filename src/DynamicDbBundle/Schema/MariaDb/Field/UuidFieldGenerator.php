@@ -6,7 +6,7 @@ namespace SylvainDuval\DynamicDbBundle\Schema\MariaDb\Field;
 
 use InvalidArgumentException;
 use SylvainDuval\DynamicDbBundle\Domain\Field\FieldInterface;
-use SylvainDuval\DynamicDbBundle\Domain\Field\UuidField;
+use SylvainDuval\DynamicDbBundle\Domain\Field\Uuid;
 use SylvainDuval\DynamicDbBundle\Schema\FieldDefinitionGeneratorInterface;
 
 /**
@@ -16,8 +16,8 @@ final class UuidFieldGenerator implements FieldDefinitionGeneratorInterface
 {
 	public function generateFieldDefinition(FieldInterface $field): string
 	{
-		if (!$field instanceof UuidField) {
-			throw new InvalidArgumentException('Expected ' . $field::class);
+		if (!$field instanceof Uuid) {
+			throw new InvalidArgumentException('Expected Uuid, found ' . $field::class);
 		}
 
 		$fieldDefinition = $field->name . ' UUID';
@@ -28,7 +28,7 @@ final class UuidFieldGenerator implements FieldDefinitionGeneratorInterface
 			$fieldDefinition .= ' DEFAULT NULL';
 		}
 		if ($field->default !== null) {
-			$fieldDefinition .= ' DEFAULT \'' . \addslashes($field->default) . '\'';
+			$fieldDefinition .= ' DEFAULT \'' . $field->default . '\'';
 		}
 
 		return $fieldDefinition;
