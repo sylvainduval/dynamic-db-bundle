@@ -59,7 +59,7 @@ No connection is opened, and no SQL is executed, until the first operation is ex
 * PHP >= 8.4
 * psr/container ^2.0
 * PDO or mysqli driver
-* MySQL, MariaDB >= 10.7 or PostgreSQL
+* MySQL >= 5.7, MariaDB >= 10.7 or PostgreSQL
 
 ### Installing
 
@@ -108,9 +108,8 @@ composer update sylvainduval/dynamic-db-bundle
 - Foreign keys
 - Indexes
 - autoincrement UNIQUE instead of PRIMARY KEY
-- boolean field : add CHECK IN (0, 1)
 - Others database and table options
-- Others fields types and options
+- Others fields types (dates, geometry) and options
 - Transactions
 - Add field: after / before
 - ...
@@ -121,7 +120,8 @@ composer update sylvainduval/dynamic-db-bundle
 - Foreign keys
 - Indexes
 - Others database and table options
-- Others fields types and options
+- Others fields types (dates, geometry) and options
+- JSON field: supports option binary version (JSONB)
 - Transactions
 - Add field: after / before
 - Change field: supports null / not null changes

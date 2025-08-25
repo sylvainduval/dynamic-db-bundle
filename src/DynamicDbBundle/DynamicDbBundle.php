@@ -61,6 +61,7 @@ class DynamicDbBundle
 			->createField($table, new Domain\Field\Numeric('id', 0, 10000000, 0, true))
 			->createField($table, new Domain\Field\Uuid('uuid', true, '877fd663-5e95-495b-80a1-000c2d38122d'))
 			->createField($table, new Domain\Field\Boolean('oui_non', true, true))
+			->createField($table, new Domain\Field\Json('tableau', true, ['a' => 'b\'c']))
 			->deleteTable($table)
 			->deleteDatabase($database)
 		;
@@ -112,6 +113,7 @@ class DynamicDbBundle
 			->createField($table, new Domain\Field\Numeric('id', 0, 10000000, 0, true))
 			->createField($table, new Domain\Field\Uuid('uuid', true, '877fd663-5e95-495b-80a1-000c2d38122d'))
 			->createField($table, new Domain\Field\Boolean('oui_non', true, true))
+			->createField($table, new Domain\Field\Json('tableau', true, ['a' => 'b\'c']))
 			->deleteTable($table)
 			->deleteDatabase($database)
 		;

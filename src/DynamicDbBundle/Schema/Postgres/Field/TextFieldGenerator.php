@@ -14,6 +14,8 @@ use SylvainDuval\DynamicDbBundle\Schema\Postgres\FieldGeneratorInterface;
  */
 final class TextFieldGenerator implements FieldGeneratorInterface
 {
+	use FieldGeneratorTrait;
+
 	public function generateFieldDefinition(FieldInterface $field): string
 	{
 		if (!$field instanceof Text) {
@@ -41,7 +43,7 @@ final class TextFieldGenerator implements FieldGeneratorInterface
 			return ' DEFAULT NULL';
 		}
 		if ($field->default !== null) {
-			return ' DEFAULT \'' . \addslashes($field->default) . '\'';
+			return ' DEFAULT \'' . $this->escapeSingleQuote($field->default) . '\'';
 		}
 
 		return '';

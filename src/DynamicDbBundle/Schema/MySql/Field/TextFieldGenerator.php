@@ -14,6 +14,8 @@ use SylvainDuval\DynamicDbBundle\Schema\FieldDefinitionGeneratorInterface;
  */
 final class TextFieldGenerator implements FieldDefinitionGeneratorInterface
 {
+	use FieldGeneratorTrait;
+
 	public function generateFieldDefinition(FieldInterface $field): string
 	{
 		if (!$field instanceof Text) {
@@ -28,7 +30,7 @@ final class TextFieldGenerator implements FieldDefinitionGeneratorInterface
 			$fieldDefinition .= ' DEFAULT NULL';
 		}
 		if ($field->default !== null) {
-			$fieldDefinition .= ' DEFAULT \'' . \addslashes($field->default) . '\'';
+			$fieldDefinition .= ' DEFAULT \'' . $this->escapeSingleQuote($field->default) . '\'';
 		}
 
 		return $fieldDefinition;
