@@ -59,7 +59,7 @@ No connection is opened, and no SQL is executed, until the first operation is ex
 * PHP >= 8.4
 * psr/container ^2.0
 * PDO or mysqli driver
-* MySQL, MariaDB or PostgreSQL
+* MySQL, MariaDB >= 10.7 or PostgreSQL
 
 ### Installing
 

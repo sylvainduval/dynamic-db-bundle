@@ -1,0 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+namespace SylvainDuval\DynamicDbBundle\Domain\Field;
+
+final readonly class UuidField implements FieldInterface
+{
+	public function __construct(
+		public string $name,
+		public bool $nullable = false,
+		public ?string $default = null,
+	) {}
+
+	public function getName(): string
+	{
+		return $this->name;
+	}
+}

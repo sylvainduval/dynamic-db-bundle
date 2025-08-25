@@ -59,6 +59,7 @@ class DynamicDbBundle
 			->createField($table, new Domain\Field\NumericField('fourth_field'))
 			->createField($table, new Domain\Field\NumericField('fifth_field', 10, 800000, 2, false, true))
 			->createField($table, new Domain\Field\NumericField('id', 0, 10000000, 0, true))
+			->createField($table, new Domain\Field\UuidField('uuid', true, '877fd663-5e95-495b-80a1-000c2d38122d'))
 			->deleteTable($table)
 			->deleteDatabase($database)
 		;
@@ -108,6 +109,7 @@ class DynamicDbBundle
 			->createField($table, new Domain\Field\NumericField('fourth_field'))
 			->createField($table, new Domain\Field\NumericField('fifth_field', 10, 800000, 2, false, true))
 			->createField($table, new Domain\Field\NumericField('id', 0, 10000000, 0, true))
+			->createField($table, new Domain\Field\UuidField('uuid', true, '877fd663-5e95-495b-80a1-000c2d38122d'))
 			->deleteTable($table)
 			->deleteDatabase($database)
 		;

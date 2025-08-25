@@ -7,12 +7,12 @@ namespace SylvainDuval\DynamicDbBundle\Schema\MySql\Field;
 use InvalidArgumentException;
 use SylvainDuval\DynamicDbBundle\Domain\Field\FieldInterface;
 use SylvainDuval\DynamicDbBundle\Domain\Field\TextField;
-use SylvainDuval\DynamicDbBundle\Schema\MySql\FieldGeneratorInterface;
+use SylvainDuval\DynamicDbBundle\Schema\FieldDefinitionGeneratorInterface;
 
 /**
  * @internal
  */
-final class TextFieldGenerator implements FieldGeneratorInterface
+final class TextFieldGenerator implements FieldDefinitionGeneratorInterface
 {
 	public function generateFieldDefinition(FieldInterface $field): string
 	{

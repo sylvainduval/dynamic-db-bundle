@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace SylvainDuval\DynamicDbBundle\Schema\MySql;
+namespace SylvainDuval\DynamicDbBundle\Schema\MariaDb;
 
 use RuntimeException;
 use SylvainDuval\DynamicDbBundle\Domain\Field;
 use SylvainDuval\DynamicDbBundle\Schema\FieldDefinitionGeneratorInterface;
 use SylvainDuval\DynamicDbBundle\Schema\FieldGeneratorFactoryInterface;
+use SylvainDuval\DynamicDbBundle\Schema\MariaDb;
 use SylvainDuval\DynamicDbBundle\Schema\MySql;
 
 final class FieldGeneratorFactory implements FieldGeneratorFactoryInterface
@@ -19,7 +20,7 @@ final class FieldGeneratorFactory implements FieldGeneratorFactoryInterface
 	private array $map = [
 		Field\NumericField::class => MySql\Field\NumericFieldGenerator::class,
 		Field\TextField::class => MySql\Field\TextFieldGenerator::class,
-		Field\UuidField::class => MySql\Field\UuidFieldGenerator::class,
+		Field\UuidField::class => MariaDb\Field\UuidFieldGenerator::class,
    ];
 
 	public function getGenerator(Field\FieldInterface $field): FieldDefinitionGeneratorInterface

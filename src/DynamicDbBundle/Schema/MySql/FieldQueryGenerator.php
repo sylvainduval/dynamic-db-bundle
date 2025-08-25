@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SylvainDuval\DynamicDbBundle\Schema\MySql;
 
 use SylvainDuval\DynamicDbBundle\Domain;
+use SylvainDuval\DynamicDbBundle\Schema\FieldGeneratorFactoryInterface;
 use SylvainDuval\DynamicDbBundle\Schema\FieldQueryGeneratorInterface;
 
 /**
@@ -12,7 +13,7 @@ use SylvainDuval\DynamicDbBundle\Schema\FieldQueryGeneratorInterface;
  */
 class FieldQueryGenerator implements FieldQueryGeneratorInterface
 {
-	private FieldGeneratorFactory $fieldGeneratorFactory;
+	protected FieldGeneratorFactoryInterface $fieldGeneratorFactory;
 
 	public function __construct()
 	{

@@ -17,6 +17,7 @@ final class FieldGeneratorFactory
 	private array $map = [
 		Field\NumericField::class => Postgres\Field\NumericFieldGenerator::class,
 		Field\TextField::class => Postgres\Field\TextFieldGenerator::class,
+		Field\UuidField::class => Postgres\Field\UuidFieldGenerator::class,
    ];
 
 	public function getGenerator(Field\FieldInterface $field): FieldGeneratorInterface
