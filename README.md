@@ -108,6 +108,7 @@ composer update sylvainduval/dynamic-db-bundle
 - Foreign keys
 - Indexes
 - autoincrement UNIQUE instead of PRIMARY KEY
+- boolean field : add CHECK IN (0, 1)
 - Others database and table options
 - Others fields types and options
 - Transactions

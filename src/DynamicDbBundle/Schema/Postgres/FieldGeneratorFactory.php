@@ -15,6 +15,7 @@ final class FieldGeneratorFactory
 
 	/** @var array<string, string> */
 	private array $map = [
+		Field\Boolean::class => Postgres\Field\BooleanFieldGenerator::class,
 		Field\NumericField::class => Postgres\Field\NumericFieldGenerator::class,
 		Field\TextField::class => Postgres\Field\TextFieldGenerator::class,
 		Field\UuidField::class => Postgres\Field\UuidFieldGenerator::class,
