@@ -56,6 +56,9 @@ class DynamicDbBundle
 				new Domain\Field\TextField('third_field', 100, false, true, 'ici')
 			)
 			->deleteField($table, 'third_field')
+			->createField($table, new Domain\Field\NumericField('fourth_field'))
+			->createField($table, new Domain\Field\NumericField('fifth_field', 10, 800000, 2, false, true))
+			->createField($table, new Domain\Field\NumericField('id', 0, 10000000, 0, true))
 			->deleteTable($table)
 			->deleteDatabase($database)
 		;
@@ -102,6 +105,9 @@ class DynamicDbBundle
 				new Domain\Field\TextField('third_field', 100, default: 'ici')
 			)
 			->deleteField($table, 'third_field')
+			->createField($table, new Domain\Field\NumericField('fourth_field'))
+			->createField($table, new Domain\Field\NumericField('fifth_field', 10, 800000, 2, false, true))
+			->createField($table, new Domain\Field\NumericField('id', 0, 10000000, 0, true))
 			->deleteTable($table)
 			->deleteDatabase($database)
 		;

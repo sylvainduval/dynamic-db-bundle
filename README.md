@@ -107,6 +107,7 @@ composer update sylvainduval/dynamic-db-bundle
 - Contraints
 - Foreign keys
 - Indexes
+- autoincrement UNIQUE instead of PRIMARY KEY
 - Others database and table options
 - Others fields types and options
 - Transactions

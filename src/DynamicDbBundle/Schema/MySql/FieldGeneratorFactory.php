@@ -15,6 +15,7 @@ final class FieldGeneratorFactory
 
 	/** @var array<string, string> */
 	private array $map = [
+		Field\NumericField::class => MySql\Field\NumericFieldGenerator::class,
 		Field\TextField::class => MySql\Field\TextFieldGenerator::class,
    ];
 

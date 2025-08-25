@@ -15,6 +15,7 @@ final class FieldGeneratorFactory
 
 	/** @var array<string, string> */
 	private array $map = [
+		Field\NumericField::class => Postgres\Field\NumericFieldGenerator::class,
 		Field\TextField::class => Postgres\Field\TextFieldGenerator::class,
    ];
 
