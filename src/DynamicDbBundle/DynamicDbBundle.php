@@ -67,6 +67,8 @@ class DynamicDbBundle
 			->createField($table, new Domain\Field\Json('tableau', true, ['a' => 'b\'c']))
 			->createField($table, new Domain\Field\Point('geopoint', true))
 			->createField($table, new Domain\Field\Geometry('geo', false))
+			->createField($table, new Domain\Field\Date('ddate', false, true))
+			->createField($table, new Domain\Field\Datetime('ddatetime', false, true))
 			->deleteTable($table)
 			->deleteDatabase($database)
 		;
@@ -121,6 +123,8 @@ class DynamicDbBundle
 			->createField($table, new Domain\Field\Json('tableau', true, ['a' => 'b\'c']))
 			->createField($table, new Domain\Field\Point('point', true))
 			->createField($table, new Domain\Field\Geometry('geo', false))
+			->createField($table, new Domain\Field\Date('ddate', false, true))
+			->createField($table, new Domain\Field\Datetime('ddatetime', false, true))
 			->deleteTable($table)
 			->deleteDatabase($database)
 		;

@@ -109,7 +109,8 @@ composer update sylvainduval/dynamic-db-bundle
 - Indexes (including SPACIAL)
 - autoincrement UNIQUE instead of PRIMARY KEY
 - Others database and table options
-- Dates fields types
+- ENUM field type
+- DATE and DATETIME field: support option with timezone
 - Transactions
 - Add field: after / before
 - ...
@@ -120,9 +121,10 @@ composer update sylvainduval/dynamic-db-bundle
 - Foreign keys
 - Indexes (including SPACIAL)
 - Others database and table options
-- Dates fields types
+- ENUM field type
 - JSON field: supports option binary version (JSONB)
 - GEOMETRY and POINT fields: supports option for default value and SRID identifier
+- DATE and DATETIME field: support option with timezone (TIMESTAMPTZ)
 - Transactions
 - Add field: after / before
 - Change field: supports null / not null changes

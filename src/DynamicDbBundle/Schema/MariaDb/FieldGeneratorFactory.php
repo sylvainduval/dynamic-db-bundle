@@ -19,6 +19,8 @@ final class FieldGeneratorFactory implements FieldGeneratorFactoryInterface
 	/** @var array<string, string> */
 	private array $map = [
 		Field\Boolean::class => MySql\Field\BooleanFieldGenerator::class,
+		Field\Date::class => MySql\Field\DateFieldGenerator::class,
+		Field\Datetime::class => MySql\Field\DatetimeFieldGenerator::class,
 		Field\Geometry::class => MySql\Field\GeometryFieldGenerator::class,
 		Field\Json::class => MariaDb\Field\JsonFieldGenerator::class,
 		Field\Numeric::class => MySql\Field\NumericFieldGenerator::class,
