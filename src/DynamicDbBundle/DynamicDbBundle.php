@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace SylvainDuval\DynamicDbBundle;
 
-use SylvainDuval\DynamicDbBundle\Domain\Enum\Driver;
-use SylvainDuval\DynamicDbBundle\Domain\Field\Geometry;
-use SylvainDuval\DynamicDbBundle\Domain\Field\Point;
 use SylvainDuval\DynamicDbBundle\Exception\QueryException;
+use SylvainDuval\DynamicDbBundle\Schema\ChangeSet;
 use SylvainDuval\DynamicDbBundle\Schema\DatabaseClosableConnectionsInterface;
 
 /**
@@ -40,7 +38,6 @@ class DynamicDbBundle
 		);
 
 		$table = new Domain\Table(
-			$database,
 			'ma_table',
 			new Domain\Options\MariaDb\TableOptions(false, 'InnoDB'),
 			[
@@ -48,8 +45,10 @@ class DynamicDbBundle
 			]
 		);
 
+		$this->createDatabase($database);
+
 		$this
-			->createDatabase($database)
+			->startSchemaChangeSet($database)
 			->createTable($table)
 			->createField($table, new Domain\Field\Text('second_field'))
 			->renameField($table, 'second_field', 'third_field')
@@ -70,8 +69,10 @@ class DynamicDbBundle
 			->createField($table, new Domain\Field\Date('ddate', false, true))
 			->createField($table, new Domain\Field\Datetime('ddatetime', false, true))
 			->deleteTable($table)
-			->deleteDatabase($database)
+			->apply()
 		;
+
+		$this->deleteDatabase($database);
 		//$result = $this->getDb()->query('UPDATE sample.test SET col_test=1');
 		//var_dump($result);
 		//
@@ -96,7 +97,6 @@ class DynamicDbBundle
 		);
 
 		$table = new Domain\Table(
-			$database,
 			'ma_table',
 			new Domain\Options\Postgres\TableOptions(false),
 			[
@@ -104,8 +104,10 @@ class DynamicDbBundle
 			]
 		);
 
+		$this->createDatabase($database);
+
 		$this
-			->createDatabase($database)
+			->startSchemaChangeSet($database)
 			->createTable($table)
 			->createField($table, new Domain\Field\Text('second_field'))
 			->renameField($table, 'second_field', 'third_field')
@@ -126,8 +128,18 @@ class DynamicDbBundle
 			->createField($table, new Domain\Field\Date('ddate', false, true))
 			->createField($table, new Domain\Field\Datetime('ddatetime', false, true))
 			->deleteTable($table)
-			->deleteDatabase($database)
+			->apply()
 		;
+
+		$this->deleteDatabase($database);
+	}
+
+	public function startSchemaChangeSet(Domain\Database $database): ChangeSet
+	{
+		return new ChangeSet(
+			$this->config->driver,
+			$this->getDb($database->name)
+		);
 	}
 
 	/**
@@ -153,63 +165,6 @@ class DynamicDbBundle
 			$db->query($sql);
 		}
 		$sql = $db->getDatabaseGenerator()->generateDeleteDatabase($database);
-		$db->query($sql);
-
-		return $this;
-	}
-
-	public function createTable(Domain\Table $table): self
-	{
-		$db = $this->getDb($table->database->name);
-		$sql = $db->getTableGenerator()->generateCreateTable($table);
-		$db->query($sql);
-
-		return $this;
-	}
-
-	public function deleteTable(Domain\Table $table): self
-	{
-		$db = $this->getDb($table->database->name);
-		$sql = $db->getTableGenerator()->generateDeleteTable($table);
-		$db->query($sql);
-
-		return $this;
-	}
-
-	public function createField(Domain\Table $table, Domain\Field\FieldInterface $field): self
-	{
-		$db = $this->getDb($table->database->name);
-		if (($field instanceof Geometry || $field instanceof Point) && $this->config->driver === Driver::PostgreSQL) {
-			$db->query('CREATE EXTENSION IF NOT EXISTS postgis');
-		}
-		$sql = $db->getFieldGenerator()->generateCreateField($table, $field);
-		$db->query($sql);
-
-		return $this;
-	}
-
-	public function renameField(Domain\Table $table, string $fromFieldName, string $toFieldName): self
-	{
-		$db = $this->getDb($table->database->name);
-		$sql = $db->getFieldGenerator()->generateRenameField($table, $fromFieldName, $toFieldName);
-		$db->query($sql);
-
-		return $this;
-	}
-
-	public function changeField(Domain\Table $table, Domain\Field\FieldInterface $fromField, Domain\Field\FieldInterface $toField): self
-	{
-		$db = $this->getDb($table->database->name);
-		$sql = $db->getFieldGenerator()->generateChangeField($table, $fromField, $toField);
-		$db->query($sql);
-
-		return $this;
-	}
-
-	public function deleteField(Domain\Table $table, string $fieldName): self
-	{
-		$db = $this->getDb($table->database->name);
-		$sql = $db->getFieldGenerator()->generateDeleteField($table, $fieldName);
 		$db->query($sql);
 
 		return $this;
