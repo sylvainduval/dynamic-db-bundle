@@ -63,6 +63,20 @@ final class ChangeSet
 		return $this;
 	}
 
+	public function createIndex(Domain\Table $table, Domain\Index $index): self
+	{
+		$this->statements[] = $this->db->getTableGenerator()->generateCreateIndex($table, $index);
+
+		return $this;
+	}
+
+	public function deleteIndex(Domain\Table $table, string $indexName): self
+	{
+		$this->statements[] = $this->db->getTableGenerator()->generateDeleteIndex($table, $indexName);
+
+		return $this;
+	}
+
 	public function apply(): void
 	{
 		$statements = !$this->isPostgres() ? $this->statements : [

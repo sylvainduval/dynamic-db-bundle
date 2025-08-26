@@ -105,9 +105,7 @@ composer update sylvainduval/dynamic-db-bundle
 - Improve exceptions and add query context in it
 
 ### MySQL / MariaDB:
-- Contraints
-- Foreign keys
-- Indexes (including SPACIAL)
+- Foreign keys contraints
 - autoincrement UNIQUE instead of PRIMARY KEY
 - Others database and table options
 - ENUM field type
@@ -117,9 +115,7 @@ composer update sylvainduval/dynamic-db-bundle
 
 ### PostgreSQL:
 - Schema management
-- Contraints
-- Foreign keys
-- Indexes (including SPACIAL)
+- Foreign keys contraints
 - Others database and table options
 - ENUM field type
 - JSON field: supports option binary version (JSONB)

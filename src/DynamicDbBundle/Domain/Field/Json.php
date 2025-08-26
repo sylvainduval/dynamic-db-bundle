@@ -6,10 +6,12 @@ namespace SylvainDuval\DynamicDbBundle\Domain\Field;
 
 final readonly class Json implements FieldInterface
 {
+	/**
+	 * @param ?array<mixed> $default
+	 */
 	public function __construct(
 		public string $name,
 		public bool $nullable = false,
-		/** @var ?array<mixed> $default */
 		public ?array $default = null,
 	) {}
 
