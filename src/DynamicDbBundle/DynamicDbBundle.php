@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SylvainDuval\DynamicDbBundle;
 
+use SylvainDuval\DynamicDbBundle\Domain\Enum\Driver;
+use SylvainDuval\DynamicDbBundle\Domain\Field\Geometry;
+use SylvainDuval\DynamicDbBundle\Domain\Field\Point;
 use SylvainDuval\DynamicDbBundle\Exception\QueryException;
 use SylvainDuval\DynamicDbBundle\Schema\DatabaseClosableConnectionsInterface;
 
@@ -62,6 +65,8 @@ class DynamicDbBundle
 			->createField($table, new Domain\Field\Uuid('uuid', true, '877fd663-5e95-495b-80a1-000c2d38122d'))
 			->createField($table, new Domain\Field\Boolean('oui_non', true, true))
 			->createField($table, new Domain\Field\Json('tableau', true, ['a' => 'b\'c']))
+			->createField($table, new Domain\Field\Point('geopoint', true))
+			->createField($table, new Domain\Field\Geometry('geo', false))
 			->deleteTable($table)
 			->deleteDatabase($database)
 		;
@@ -114,6 +119,8 @@ class DynamicDbBundle
 			->createField($table, new Domain\Field\Uuid('uuid', true, '877fd663-5e95-495b-80a1-000c2d38122d'))
 			->createField($table, new Domain\Field\Boolean('oui_non', true, true))
 			->createField($table, new Domain\Field\Json('tableau', true, ['a' => 'b\'c']))
+			->createField($table, new Domain\Field\Point('point', true))
+			->createField($table, new Domain\Field\Geometry('geo', false))
 			->deleteTable($table)
 			->deleteDatabase($database)
 		;
@@ -168,6 +175,9 @@ class DynamicDbBundle
 	public function createField(Domain\Table $table, Domain\Field\FieldInterface $field): self
 	{
 		$db = $this->getDb($table->database->name);
+		if (($field instanceof Geometry || $field instanceof Point) && $this->config->driver === Driver::PostgreSQL) {
+			$db->query('CREATE EXTENSION IF NOT EXISTS postgis');
+		}
 		$sql = $db->getFieldGenerator()->generateCreateField($table, $field);
 		$db->query($sql);
 

@@ -106,10 +106,10 @@ composer update sylvainduval/dynamic-db-bundle
 ### MySQL / MariaDB:
 - Contraints
 - Foreign keys
-- Indexes
+- Indexes (including SPACIAL)
 - autoincrement UNIQUE instead of PRIMARY KEY
 - Others database and table options
-- Others fields types (dates, geometry) and options
+- Dates fields types
 - Transactions
 - Add field: after / before
 - ...
@@ -118,10 +118,11 @@ composer update sylvainduval/dynamic-db-bundle
 - Schema management
 - Contraints
 - Foreign keys
-- Indexes
+- Indexes (including SPACIAL)
 - Others database and table options
-- Others fields types (dates, geometry) and options
+- Dates fields types
 - JSON field: supports option binary version (JSONB)
+- GEOMETRY and POINT fields: supports option for default value and SRID identifier
 - Transactions
 - Add field: after / before
 - Change field: supports null / not null changes
