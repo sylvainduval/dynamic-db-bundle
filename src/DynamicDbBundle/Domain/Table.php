@@ -14,7 +14,6 @@ final readonly class Table
 	 * @param array<FieldInterface> $fields
 	 */
 	public function __construct(
-		public Database $database,
 		public string $name,
 		public ?TableOptionsInterface $options = null,
 		public array $fields = [],

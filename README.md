@@ -102,6 +102,7 @@ composer update sylvainduval/dynamic-db-bundle
 ### Global:
 - Symfony service injection
 - Tests
+- Improve exceptions and add query context in it
 
 ### MySQL / MariaDB:
 - Contraints

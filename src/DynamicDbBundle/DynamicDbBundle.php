@@ -38,7 +38,6 @@ class DynamicDbBundle
 		);
 
 		$table = new Domain\Table(
-			$database,
 			'ma_table',
 			new Domain\Options\MariaDb\TableOptions(false, 'InnoDB'),
 			[
@@ -98,7 +97,6 @@ class DynamicDbBundle
 		);
 
 		$table = new Domain\Table(
-			$database,
 			'ma_table',
 			new Domain\Options\Postgres\TableOptions(false),
 			[
@@ -135,8 +133,6 @@ class DynamicDbBundle
 
 		$this->deleteDatabase($database);
 	}
-
-
 
 	public function startSchemaChangeSet(Domain\Database $database): ChangeSet
 	{
