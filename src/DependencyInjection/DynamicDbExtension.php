@@ -33,9 +33,4 @@ final class DynamicDbExtension extends Extension
 		$container->setDefinition(DynamicDbBundle::class, $definition);
 		$container->setAlias('dynamic_db_bundle', DynamicDbBundle::class);
 	}
-
-	public function getAlias(): string
-	{
-		return 'dynamic_db';
-	}
 }
