@@ -19,7 +19,7 @@ final class DynamicDbRegistrar
 	public function register(array $config, ContainerInterface $container): void
 	{
 		/** @var ConfigurationArray $defaultConfig */
-		$defaultConfig = require __DIR__ . '/../Resources/config/default.php';
+		$defaultConfig = require __DIR__ . '/../../Resources/config/default.php';
 		$mergedConfig = \array_merge($defaultConfig, $config);
 
 		if (\method_exists($container, 'set') === false) {

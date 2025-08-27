@@ -14,9 +14,9 @@ use SylvainDuval\DynamicDbBundle\DynamicDbBundle;
 
 final class DynamicDbExtension extends Extension
 {
-    public function load(array $configs, ContainerBuilder $container): void
-    {
-        $defaultConfig = require __DIR__ . '/../Resources/config/default.php';
+	public function load(array $configs, ContainerBuilder $container): void
+	{
+		$defaultConfig = require __DIR__ . '/../Resources/config/default.php';
         $mergedConfig = array_merge($defaultConfig, ...$configs);
 
         $container->setParameter('dynamic_db.config', $mergedConfig);
@@ -27,5 +27,10 @@ final class DynamicDbExtension extends Extension
 
         $container->setDefinition(DynamicDbBundle::class, $definition);
         $container->setAlias('dynamic_db_bundle', DynamicDbBundle::class);
+    }
+
+	 public function getAlias(): string
+    {
+        return 'dynamic_db';
     }
 }
