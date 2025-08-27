@@ -4,29 +4,28 @@ declare(strict_types=1);
 
 namespace SylvainDuval\DynamicDbBundle\DependencyInjection;
 
-use Psr\Container\ContainerInterface;
-use SylvainDuval\DynamicDbBundle\Domain\Configuration;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use Symfony\Component\DependencyInjection\Definition;
 use SylvainDuval\DynamicDbBundle\DynamicDbBundle;
 
-/**
- * @phpstan-import-type ConfigurationArray from Configuration
- */
-final class DynamicDbExtension
+final class DynamicDbExtension extends Extension
 {
-	/**
-	 * @param ConfigurationArray $config
-	 */
-	public function register(array $config, ContainerInterface $container): void
-	{
-		/** @var ConfigurationArray $defaultConfig */
-		$defaultConfig = require __DIR__ . '/../Resources/config/default.php';
-		$mergedConfig = \array_merge($defaultConfig, $config);
+    public function load(array $configs, ContainerBuilder $container): void
+    {
+        $defaultConfig = require __DIR__ . '/../Resources/config/default.php';
+        $mergedConfig = array_merge($defaultConfig, ...$configs);
 
-		if (\method_exists($container, 'set') === false) {
-			throw new \Exception('Container must implements set method');
-		}
-		$container->set('dynamic_db_bundle', function () use ($mergedConfig) {
-			return new DynamicDbBundle($mergedConfig);
-		});
-	}
+        $container->setParameter('dynamic_db.config', $mergedConfig);
+
+        // 3. Déclare le service principal
+        $definition = new Definition(DynamicDbBundle::class);
+        $definition->setArgument(0, $mergedConfig); // injecte la config
+
+        $container->setDefinition(DynamicDbBundle::class, $definition);
+        $container->setAlias('dynamic_db_bundle', DynamicDbBundle::class);
+    }
 }
