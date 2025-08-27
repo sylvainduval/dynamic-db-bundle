@@ -3,9 +3,10 @@
   "description": "Build and edit your database schema with PHP.",
   "type": "library",
   "license": "MIT",
+  "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
-      "SylvainDuval\\DynamicDbBundle\\": "src/DynamicDbBundle/"
+      "SylvainDuval\\DynamicDbBundle\\": "src"
     }
   },
   "require": {
