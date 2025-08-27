@@ -65,42 +65,74 @@ No connection is opened, and no SQL is executed, until the first operation is ex
 
 DynamicDB is currently in development and not yet published on Packagist. To use it locally in your project:
 
-1. Clone the repository somewhere on your machine:
-
-```bash
-git clone git@github.com:sylvainduval/dynamic-db-bundle.git /opt/DynamicDbBundle
-```
-
-2. Reference it in your composer.json using the path repository type:
+1. Reference it in your composer.json:
 ```json
 {
-  "repositories": [
-    {
-      "type": "path",
-      "url": "/opt/DynamicDbBundle",
-      "options": {
-        "symlink": true
-      }
-    }
-  ],
-  "require": {
-    "sylvainduval/dynamic-db-bundle": "*"
-  }
+	"minimum-stability": "dev",
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/sylvainduval/dynamic-db-bundle"
+		}
+	],
+	"require": {
+		"sylvainduval/dynamic-db-bundle": "*"
+	}
 }
 ```
 
-3. Install the dependencies:
+2. Install the dependencies:
 
 ```bash
 composer update sylvainduval/dynamic-db-bundle
 ```
 
-ℹ️ The symlink option allows you to edit the bundle source code live and see changes reflected in your consuming project.
+3. With Symfony
+
+This bundle is not registred as a receipe. You must add this line in config/bundles.php:
+```php
+<?php 
+
+return [
+	...
+	SylvainDuval\DynamicDbBundle\Bridge\Symfony\DynamicDbSymfonyBundle::class => ['all' => true],
+];
+```
+And set up your database connection in config/packages/dynamic_db.yaml:
+```yaml
+dynamic_db:
+    host: 'db'
+    port: 3306
+    user: '***'
+    password: '***'
+    database: null
+    charset: 'utf8mb4'
+```
+
+4. Without Symfony
+
+Register the service in your own PSR container :
+```php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$container = new App\Container();
+
+$bundle = new \SylvainDuval\DynamicDbBundle\Bridge\Standalone\DynamicDbRegistrar();
+$bundle->register([
+    'host' => 'db',
+    'port' => 3306,
+    'user' => '***',
+    'password' => '***',
+    'database' => null,
+    'charset' => 'utf8mb4'
+], $container);
+```
 
 ## Todo
 
 ### Global:
-- Symfony service injection
 - Tests
 - Improve exceptions and add query context in it
 

@@ -1,5 +1,8 @@
 parameters:
-    level: max
-    paths:
-        - src
-    treatPhpDocTypesAsCertain: false
+	level: max
+	paths:
+		- src
+	excludePaths:
+		- src/Bridge/Symfony
+		- src/DependencyInjection
+	treatPhpDocTypesAsCertain: false
