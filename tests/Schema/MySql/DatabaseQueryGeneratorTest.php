@@ -40,7 +40,7 @@ final class DatabaseQueryGeneratorTest extends TestCase
 				new Database('foo'),
 				'DROP DATABASE foo',
 			],
-	
+
 		];
 	}
 
