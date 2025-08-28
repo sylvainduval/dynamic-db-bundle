@@ -59,12 +59,13 @@ final class TextFieldGenerator implements FieldGeneratorInterface
 			throw new InvalidArgumentException('Length must be a positive integer.');
 		}
 
-		if ($field->length > 10485760) {
+		if ($field->length > 10 * 1024 * 1024) { //10MB
 			// above 10 MB, no need to restrict
 			return 'TEXT';
 		}
 
 		if ($field->fixedLength) {
+			//TODO: inefficient above 255, throw InvalidArgumentException or use varchar ?
 			return "CHAR({$field->length})";
 		}
 
