@@ -1,25 +1,32 @@
 {
-  "name": "sylvainduval/dynamic-db-bundle",
-  "description": "Build and edit your database schema with PHP.",
-  "type": "library",
-  "license": "MIT",
-  "minimum-stability": "dev",
-  "autoload": {
-    "psr-4": {
-      "SylvainDuval\\DynamicDbBundle\\": "src"
-    }
-  },
-  "require": {
-    "php": ">=8.4",
-    "psr/container": "^2.0"
-  },
-  "require-dev": {
-    "phpstan/phpstan": "^2.1",
-    "friendsofphp/php-cs-fixer": "^3.85"
-  },
-  "extra": {
-    "symfony": {
-        "bundle": "SylvainDuval\\DynamicDbBundle\\Bridge\\Symfony\\DynamicDbSymfonyBundle"
-    }
-  }
+	"name": "sylvainduval/dynamic-db-bundle",
+	"version": "0.0.1",
+	"description": "Build and edit your database schema with PHP.",
+	"type": "library",
+	"license": "MIT",
+	"minimum-stability": "dev",
+	"autoload": {
+		"psr-4": {
+			"SylvainDuval\\DynamicDbBundle\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\": "tests/"
+		}
+	},
+	"require": {
+		"php": ">=8.4",
+		"psr/container": "^2.0"
+	},
+	"require-dev": {
+		"phpstan/phpstan": "^2.1",
+		"friendsofphp/php-cs-fixer": "^3.85",
+		"phpunit/phpunit": "^12"
+	},
+	"extra": {
+		"symfony": {
+			"bundle": "SylvainDuval\\DynamicDbBundle\\Bridge\\Symfony\\DynamicDbSymfonyBundle"
+		}
+	}
 }
