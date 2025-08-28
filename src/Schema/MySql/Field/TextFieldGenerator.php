@@ -49,13 +49,19 @@ final class TextFieldGenerator implements FieldDefinitionGeneratorInterface
 			throw new InvalidArgumentException('Length must be a positive integer.');
 		}
 
-		if ($field->length <= 65535) {
-			if ($field->length <= 255 && $field->fixedLength) {
-				return "CHAR({$field->length})";
-			}
+		if ($field->length <= 255 && $field->fixedLength) {
+			return "CHAR({$field->length})";
+		}
 
+		if ($field->length <= 21844) {
 			return "VARCHAR({$field->length})";
 		}
+
+		$textTypes = [
+			65535 => 'TEXT',
+			16777215 => 'MEDIUMTEXT',
+			4294967295 => 'LONGTEXT',
+		];
 
 		foreach ($textTypes as $limit => $type) {
 			if ($field->length <= $limit) {

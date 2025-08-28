@@ -29,11 +29,11 @@ class DatabaseQueryGenerator implements DatabaseQueryGeneratorInterface
 			}
 
 			if ($options->comment !== null) {
-				$query .= ' COMMENT \'' . \addslashes($options->comment) . '\'';
+				$query .= ' COMMENT = \'' . \addslashes($options->comment) . '\'';
 			}
 		}
 
-		return $query . ';';
+		return $query;
 	}
 
 	public function generateDeleteDatabase(Domain\Database $database): string

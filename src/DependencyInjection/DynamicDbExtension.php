@@ -28,7 +28,7 @@ final class DynamicDbExtension extends Extension
 
 		// 3. Déclare le service principal
 		$definition = new Definition(DynamicDbBundle::class);
-		$definition->setArgument(0, $mergedConfig); // injecte la config
+		$definition->setArgument(0, $mergedConfig);
 
 		$container->setDefinition(DynamicDbBundle::class, $definition);
 		$container->setAlias('dynamic_db_bundle', DynamicDbBundle::class);

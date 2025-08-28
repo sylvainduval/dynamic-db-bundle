@@ -133,7 +133,7 @@ $bundle->register([
 ## Todo
 
 ### Global:
-- Tests
+- Test First level query classes (TableQueryGenerator, FieldQueryGenerator)
 - Improve exceptions and add query context in it
 
 ### MySQL / MariaDB:
