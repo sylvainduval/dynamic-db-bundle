@@ -42,7 +42,7 @@ final class DatabaseQueryGenerator implements DatabaseClosableConnectionsInterfa
 			}
 		}
 
-		return $query . ';';
+		return $query;
 	}
 
 	public function generateCloseConnections(Domain\Database $database): string
