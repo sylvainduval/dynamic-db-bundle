@@ -133,12 +133,11 @@ $bundle->register([
 ## Todo
 
 ### Global:
-- Test First level query classes (TableQueryGenerator, FieldQueryGenerator)
 - Improve exceptions and add query context in it
 
 ### MySQL / MariaDB:
 - Foreign keys contraints
-- autoincrement UNIQUE instead of PRIMARY KEY
+- autoincrement UNIQUE, not only PRIMARY KEY
 - Others database and table options
 - ENUM field type
 - DATE and DATETIME field: support option with timezone
