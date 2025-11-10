@@ -17,8 +17,11 @@
 		}
 	},
 	"require": {
-		"php": ">=8.4",
-		"psr/container": "^2.0"
+		"php": ">=8.4"
+	},
+	"suggest": {
+		"psr/container": "Required if you use standalone bridge for dependency injection",
+		"symfony/dependency-injection": "Required if you use Symfony dependency injection"
 	},
 	"require-dev": {
 		"phpstan/phpstan": "^2.1",

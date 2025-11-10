@@ -162,11 +162,6 @@ Contributors names and contact info
 
 - [@sylvainduval](https://github.com/sylvainduval)
 
-## Version History
-
-* 0.0.0
-    * Unreleased
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE.txt) file for more details.
