@@ -57,9 +57,13 @@ No connection is opened, and no SQL is executed, until the first operation is ex
 ### Dependencies
 
 * PHP >= 8.4
-* psr/container ^2.0
 * PDO or mysqli driver
 * MySQL >= 5.7, MariaDB >= 10.7 or PostgreSQL
+
+Also suggested requirements for dependency injection :
+
+* psr/container: Required if you use standalone bridge
+* symfony/dependency-injection: Required if you use Symfony
 
 ### Installing
 
@@ -161,11 +165,6 @@ $bundle->register([
 Contributors names and contact info
 
 - [@sylvainduval](https://github.com/sylvainduval)
-
-## Version History
-
-* 0.0.0
-    * Unreleased
 
 ## License
 
