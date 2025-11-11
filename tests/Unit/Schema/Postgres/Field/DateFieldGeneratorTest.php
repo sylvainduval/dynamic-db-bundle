@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\SylvainDuval\DynamicDbBundle\Schema\MySql\Field;
+namespace SylvainDuval\DynamicDbBundle\Tests\Unit\Schema\Postgres\Field;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SylvainDuval\DynamicDbBundle\Domain\Field\Date;
-use SylvainDuval\DynamicDbBundle\Schema\MySql\Field\DateFieldGenerator;
+use SylvainDuval\DynamicDbBundle\Schema\Postgres\Field\DateFieldGenerator;
 
 final class DateFieldGeneratorTest extends TestCase
 {
@@ -31,11 +31,11 @@ final class DateFieldGeneratorTest extends TestCase
 			],
 			'nullable with default current' => [
 				new Date('foo', true, true),
-				'foo DATE NULL DEFAULT NOW()',
+				'foo DATE NULL DEFAULT CURRENT_DATE',
 			],
 			'not nullable with default current' => [
 				new Date('foo', false, true),
-				'foo DATE NOT NULL DEFAULT NOW()',
+				'foo DATE NOT NULL DEFAULT CURRENT_DATE',
 			],
 		];
 	}

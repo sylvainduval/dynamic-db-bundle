@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\SylvainDuval\DynamicDbBundle\Schema\MySql\Field;
+namespace SylvainDuval\DynamicDbBundle\Tests\Unit\Schema\Postgres\Field;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SylvainDuval\DynamicDbBundle\Domain\Field\Uuid;
-use SylvainDuval\DynamicDbBundle\Schema\MySql\Field\UuidFieldGenerator;
+use SylvainDuval\DynamicDbBundle\Schema\Postgres\Field\UuidFieldGenerator;
 
 final class UuidFieldGeneratorTest extends TestCase
 {
@@ -23,19 +23,19 @@ final class UuidFieldGeneratorTest extends TestCase
 		return [
 			'default' => [
 				new Uuid('foo'),
-				'foo CHAR(36) NOT NULL',
+				'foo UUID NOT NULL',
 			],
 			'nullable without default' => [
 				new Uuid('foo', true),
-				'foo CHAR(36) NULL DEFAULT NULL',
+				'foo UUID NULL DEFAULT NULL',
 			],
 			'nullable with default' => [
 				new Uuid('foo', true, '49c966b5-7d30-4f1d-a3d7-cf117c767718'),
-				'foo CHAR(36) NULL DEFAULT \'49c966b5-7d30-4f1d-a3d7-cf117c767718\'',
+				'foo UUID NULL DEFAULT \'49c966b5-7d30-4f1d-a3d7-cf117c767718\'',
 			],
 			'not nullable with default' => [
 				new Uuid('foo', false, '49c966b5-7d30-4f1d-a3d7-cf117c767718'),
-				'foo CHAR(36) NOT NULL DEFAULT \'49c966b5-7d30-4f1d-a3d7-cf117c767718\'',
+				'foo UUID NOT NULL DEFAULT \'49c966b5-7d30-4f1d-a3d7-cf117c767718\'',
 			],
 		];
 	}

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\SylvainDuval\DynamicDbBundle\Schema\Postgres;
+namespace SylvainDuval\DynamicDbBundle\Tests\Unit\Schema\Postgres;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

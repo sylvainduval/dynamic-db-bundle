@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\SylvainDuval\DynamicDbBundle\Schema\MySql\Field;
+namespace SylvainDuval\DynamicDbBundle\Tests\Unit\Schema\Postgres\Field;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SylvainDuval\DynamicDbBundle\Domain\Field\Point;
-use SylvainDuval\DynamicDbBundle\Schema\MySql\Field\PointFieldGenerator;
+use SylvainDuval\DynamicDbBundle\Schema\Postgres\Field\PointFieldGenerator;
 
 final class PointFieldGeneratorTest extends TestCase
 {
@@ -23,11 +23,11 @@ final class PointFieldGeneratorTest extends TestCase
 		return [
 			'default' => [
 				new Point('foo'),
-				'foo POINT NOT NULL',
+				'foo GEOGRAPHY(POINT) NOT NULL',
 			],
 			'nullable' => [
 				new Point('foo', true),
-				'foo POINT NULL',
+				'foo GEOGRAPHY(POINT) NULL',
 			],
 		];
 	}

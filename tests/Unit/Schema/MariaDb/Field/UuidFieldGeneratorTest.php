@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\SylvainDuval\DynamicDbBundle\Schema\MariaDb\Field;
+namespace SylvainDuval\DynamicDbBundle\Tests\Unit\Schema\MariaDb\Field;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

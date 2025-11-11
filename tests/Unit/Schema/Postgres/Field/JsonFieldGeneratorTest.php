@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\SylvainDuval\DynamicDbBundle\Schema\MariaDb\Field;
+namespace SylvainDuval\DynamicDbBundle\Tests\Unit\Schema\Postgres\Field;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SylvainDuval\DynamicDbBundle\Domain\Field\Json;
-use SylvainDuval\DynamicDbBundle\Schema\MariaDb\Field\JsonFieldGenerator;
+use SylvainDuval\DynamicDbBundle\Schema\Postgres\Field\JsonFieldGenerator;
 
 final class JsonFieldGeneratorTest extends TestCase
 {
@@ -23,19 +23,19 @@ final class JsonFieldGeneratorTest extends TestCase
 		return [
 			'default' => [
 				new Json('foo'),
-				'foo LONGTEXT NOT NULL CHECK (JSON_VALID(foo))',
+				'foo JSON NOT NULL',
 			],
 			'nullable without default' => [
 				new Json('foo', true),
-				'foo LONGTEXT NULL DEFAULT NULL CHECK (JSON_VALID(foo))',
+				'foo JSON NULL DEFAULT NULL',
 			],
 			'nullable with default' => [
 				new Json('foo', true, ['a' => 'b\'c', 'c' => ['d']]),
-				'foo LONGTEXT NULL DEFAULT \'{"a":"b\\\'c","c":["d"]}\' CHECK (JSON_VALID(foo))',
+				'foo JSON NULL DEFAULT \'{"a":"b\'\'c","c":["d"]}\'',
 			],
 			'not nullable with default' => [
 				new Json('foo', false, []),
-				'foo LONGTEXT NOT NULL DEFAULT \'[]\' CHECK (JSON_VALID(foo))',
+				'foo JSON NOT NULL DEFAULT \'[]\'',
 			],
 		];
 	}

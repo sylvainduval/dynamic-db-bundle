@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\SylvainDuval\DynamicDbBundle\Schema\MySql\Field;
+namespace SylvainDuval\DynamicDbBundle\Tests\Unit\Schema\MySql\Field;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
