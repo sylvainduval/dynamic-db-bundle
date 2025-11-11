@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php" colors="true" stopOnFailure="false">
+<phpunit bootstrap="tests/bootstrap.php" colors="true" stopOnFailure="false">
 	<testsuites>
-		<testsuite name="DynamicDB Bundle Test Suite">
-			<directory>tests</directory>
+		<testsuite name="DynamicDB Bundle Unit Test Suite">
+			<directory>tests/Unit</directory>
+		</testsuite>
+		<testsuite name="DynamicDB Bundle Integration Test Suite">
+			<directory>tests/Integration</directory>
 		</testsuite>
 	</testsuites>
 </phpunit>
