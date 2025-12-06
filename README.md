@@ -70,28 +70,11 @@ Also suggested requirements for dependency injection :
 DynamicDB is currently in development and not yet published on Packagist. To use it locally in your project:
 
 1. Reference it in your composer.json:
-```json
-{
-	"minimum-stability": "dev",
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/sylvainduval/dynamic-db-bundle"
-		}
-	],
-	"require": {
-		"sylvainduval/dynamic-db-bundle": "*"
-	}
-}
-```
-
-2. Install the dependencies:
-
 ```bash
-composer update sylvainduval/dynamic-db-bundle
+composer require sylvainduval/dynamic-db-bundle
 ```
 
-3. With Symfony
+2. With Symfony
 
 This bundle is not registred as a receipe. You must add this line in config/bundles.php:
 ```php
@@ -113,7 +96,7 @@ dynamic_db:
     charset: 'utf8mb4'
 ```
 
-4. Without Symfony
+3. Without Symfony
 
 Register the service in your own PSR container :
 ```php

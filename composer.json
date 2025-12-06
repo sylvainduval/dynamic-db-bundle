@@ -1,6 +1,6 @@
 {
 	"name": "sylvainduval/dynamic-db-bundle",
-	"version": "0.0.1",
+	"version": "0.3.0",
 	"description": "Build and edit your database schema with PHP.",
 	"type": "library",
 	"license": "MIT",
