@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-12-06
+
+### Changed
+
+- Readme changed with packagist install
+
+### Fixed
+
+- Mismatch composer version
+
 ## [0.2.0] - 2025-11-11
 
 ### Added
