@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Current date for date field in MySQL
 - Remove comment on database for MySQL
+- Table query for MySQL
 
 ## [0.3.0] - 2025-12-06
 
