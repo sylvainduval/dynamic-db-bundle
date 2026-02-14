@@ -58,7 +58,7 @@ services:
       - dynamicdb_network
 
   db_postgres:
-    image: postgres:16
+    image: postgis/postgis:17-3.5
     container_name: dynamicdb_postgres
     environment:
       POSTGRES_USER: user
@@ -70,6 +70,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - dynamicdb_network
+
 
 volumes:
   mysql_data:

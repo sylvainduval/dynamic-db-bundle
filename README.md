@@ -134,7 +134,7 @@ composer require sylvainduval/dynamic-db-bundle
 
 2. With Symfony
 
-This bundle is not registred as a receipe. You must add this line in config/bundles.php:
+This bundle does not have a Symfony Flex recipe yet. You must add this line in config/bundles.php:
 ```php
 <?php 
 

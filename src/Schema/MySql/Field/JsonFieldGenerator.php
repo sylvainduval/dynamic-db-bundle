@@ -26,13 +26,6 @@ final class JsonFieldGenerator implements FieldDefinitionGeneratorInterface
 
 		$fieldDefinition .= $field->nullable ? ' NULL' : ' NOT NULL';
 
-		if ($field->default === null && $field->nullable) {
-			$fieldDefinition .= ' DEFAULT NULL';
-		}
-		if ($field->default !== null) {
-			$fieldDefinition .= ' DEFAULT \'' . $this->escapeSingleQuote(\json_encode($field->default, JSON_THROW_ON_ERROR)) . '\'';
-		}
-
 		return $fieldDefinition;
 	}
 }

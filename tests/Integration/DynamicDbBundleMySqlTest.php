@@ -29,20 +29,25 @@ final class DynamicDbBundleMySqlTest extends TestCase
 	{
 		$database = new Domain\Database(
 			'toto',
-			new Domain\Options\MariaDb\DatabaseOptions(
+			new Domain\Options\MySql\DatabaseOptions(
 				\getenv('MYSQL_DB_CHARSET'),
 				'utf8mb4_general_ci',
-				'test mariadb'
 			),
 		);
 
 		$table = new Domain\Table(
 			'ma_table',
-			new Domain\Options\MariaDb\TableOptions(false, 'InnoDB'),
+			new Domain\Options\MySql\TableOptions(false, 'InnoDB'),
 			[
 				new Domain\Field\Text('first_field', 5, true, true, 'abcde'),
 			]
 		);
+
+		try {
+			$this->dynamicDb->deleteDatabase($database);
+		} catch (QueryException $e) {
+			// ignore
+		}
 
 		$this->dynamicDb->createDatabase($database);
 
@@ -65,7 +70,7 @@ final class DynamicDbBundleMySqlTest extends TestCase
 			->createField($table, new Domain\Field\Numeric('id', 0, 10000000, 0, true))
 			->createField($table, new Domain\Field\Uuid('uuid', true, '877fd663-5e95-495b-80a1-000c2d38122d'))
 			->createField($table, new Domain\Field\Boolean('oui_non', true, true))
-			->createField($table, new Domain\Field\Json('tableau', true, ['a' => 'b\'c']))
+			->createField($table, new Domain\Field\Json('tableau', true))
 			->createField($table, new Domain\Field\Point('geopoint', true))
 			->createField($table, new Domain\Field\Geometry('geo', false))
 			->createIndex(

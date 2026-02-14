@@ -25,17 +25,9 @@ final class JsonFieldGeneratorTest extends TestCase
 				new Json('foo'),
 				'foo JSON NOT NULL',
 			],
-			'nullable without default' => [
+			'nullable' => [
 				new Json('foo', true),
-				'foo JSON NULL DEFAULT NULL',
-			],
-			'nullable with default' => [
-				new Json('foo', true, ['a' => 'b\'c', 'c' => ['d']]),
-				'foo JSON NULL DEFAULT \'{"a":"b\\\'c","c":["d"]}\'',
-			],
-			'not nullable with default' => [
-				new Json('foo', false, []),
-				'foo JSON NOT NULL DEFAULT \'[]\'',
+				'foo JSON NULL',
 			],
 		];
 	}

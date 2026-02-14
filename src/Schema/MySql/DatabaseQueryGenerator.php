@@ -21,15 +21,11 @@ class DatabaseQueryGenerator implements DatabaseQueryGeneratorInterface
 			$options = $database->options;
 
 			if ($options->charset !== null) {
-				$query .= ' CHARACTER SET = \'' . $options->charset . '\'';
+				$query .= ' CHARACTER SET ' . $options->charset;
 			}
 
 			if ($options->collation !== null) {
-				$query .= ' COLLATE = \'' . $options->collation . '\'';
-			}
-
-			if ($options->comment !== null) {
-				$query .= ' COMMENT = \'' . \addslashes($options->comment) . '\'';
+				$query .= ' COLLATE ' . $options->collation;
 			}
 		}
 
