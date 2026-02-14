@@ -7,6 +7,7 @@ namespace SylvainDuval\DynamicDbBundle\Tests\Unit\Schema\Postgres\Field;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SylvainDuval\DynamicDbBundle\Domain\Field\Json;
+use SylvainDuval\DynamicDbBundle\Domain\Options\Postgres\Field\JsonOptions;
 use SylvainDuval\DynamicDbBundle\Schema\Postgres\Field\JsonFieldGenerator;
 
 final class JsonFieldGeneratorTest extends TestCase
@@ -30,11 +31,11 @@ final class JsonFieldGeneratorTest extends TestCase
 				'foo JSON NULL DEFAULT NULL',
 			],
 			'nullable with default' => [
-				new Json('foo', true, ['a' => 'b\'c', 'c' => ['d']]),
+				new Json('foo', true, new JsonOptions(['a' => 'b\'c', 'c' => ['d']])),
 				'foo JSON NULL DEFAULT \'{"a":"b\'\'c","c":["d"]}\'',
 			],
 			'not nullable with default' => [
-				new Json('foo', false, []),
+				new Json('foo', false, new JsonOptions([])),
 				'foo JSON NOT NULL DEFAULT \'[]\'',
 			],
 		];

@@ -65,9 +65,67 @@ Also suggested requirements for dependency injection :
 * psr/container: Required if you use standalone bridge
 * symfony/dependency-injection: Required if you use Symfony
 
-### Installing
+### Development Setup with Docker
 
-DynamicDB is currently in development and not yet published on Packagist. To use it locally in your project:
+For development, this project includes a complete Docker environment with PHP 8.4, MySQL, MariaDB, and PostgreSQL.
+
+#### Prerequisites
+
+* Docker and Docker Compose v2 installed on your system
+
+#### Quick Start
+
+1. Clone the repository and navigate to the project directory
+
+2. Start the Docker environment:
+```bash
+make up
+```
+
+3. Install dependencies:
+```bash
+make install
+```
+
+4. Run tests to verify everything works:
+```bash
+make test
+```
+
+#### Available Make Commands
+
+* `make help` - Show all available commands
+* `make up` - Start all Docker services
+* `make down` - Stop all Docker services
+* `make shell` - Open a shell in the PHP container
+* `make install` - Install Composer dependencies
+* `make test` - Run all PHPUnit tests
+* `make test-unit` - Run only unit tests
+* `make test-integration` - Run only integration tests
+* `make phpstan` - Run PHPStan static analysis
+* `make cs-fix` - Fix code style with PHP-CS-Fixer
+* `make cs-check` - Check code style without fixing
+* `make clean` - Clean up containers, volumes, and caches
+
+#### Manual Docker Commands
+
+If you prefer not to use the Makefile:
+
+```bash
+# Start services
+docker compose up -d
+
+# Run tests
+docker compose exec php vendor/bin/phpunit
+
+# Run PHPStan
+docker compose exec php vendor/bin/phpstan analyse
+
+# Fix code style
+docker compose exec php vendor/bin/php-cs-fixer fix
+```
+
+### Installing
 
 1. Reference it in your composer.json:
 ```bash
@@ -76,7 +134,7 @@ composer require sylvainduval/dynamic-db-bundle
 
 2. With Symfony
 
-This bundle is not registred as a receipe. You must add this line in config/bundles.php:
+This bundle does not have a Symfony Flex recipe yet. You must add this line in config/bundles.php:
 ```php
 <?php 
 

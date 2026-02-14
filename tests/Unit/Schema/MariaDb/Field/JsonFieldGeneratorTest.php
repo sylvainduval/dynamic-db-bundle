@@ -7,6 +7,7 @@ namespace SylvainDuval\DynamicDbBundle\Tests\Unit\Schema\MariaDb\Field;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SylvainDuval\DynamicDbBundle\Domain\Field\Json;
+use SylvainDuval\DynamicDbBundle\Domain\Options\MariaDb\Field\JsonOptions;
 use SylvainDuval\DynamicDbBundle\Schema\MariaDb\Field\JsonFieldGenerator;
 
 final class JsonFieldGeneratorTest extends TestCase
@@ -30,11 +31,11 @@ final class JsonFieldGeneratorTest extends TestCase
 				'foo LONGTEXT NULL DEFAULT NULL CHECK (JSON_VALID(foo))',
 			],
 			'nullable with default' => [
-				new Json('foo', true, ['a' => 'b\'c', 'c' => ['d']]),
+				new Json('foo', true, new JsonOptions(['a' => 'b\'c', 'c' => ['d']])),
 				'foo LONGTEXT NULL DEFAULT \'{"a":"b\\\'c","c":["d"]}\' CHECK (JSON_VALID(foo))',
 			],
 			'not nullable with default' => [
-				new Json('foo', false, []),
+				new Json('foo', false, new JsonOptions([])),
 				'foo LONGTEXT NOT NULL DEFAULT \'[]\' CHECK (JSON_VALID(foo))',
 			],
 		];

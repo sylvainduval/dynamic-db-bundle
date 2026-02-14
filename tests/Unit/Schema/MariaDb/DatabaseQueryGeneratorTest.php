@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace SylvainDuval\DynamicDbBundle\Tests\Unit\Schema\MySql;
+namespace SylvainDuval\DynamicDbBundle\Tests\Unit\Schema\MariaDb;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SylvainDuval\DynamicDbBundle\Domain\Database;
-use SylvainDuval\DynamicDbBundle\Domain\Options\MySql\DatabaseOptions;
-use SylvainDuval\DynamicDbBundle\Schema\MySql\DatabaseQueryGenerator;
+use SylvainDuval\DynamicDbBundle\Domain\Options\MariaDb\DatabaseOptions;
+use SylvainDuval\DynamicDbBundle\Schema\MariaDb\DatabaseQueryGenerator;
 
 final class DatabaseQueryGeneratorTest extends TestCase
 {
@@ -24,11 +24,11 @@ final class DatabaseQueryGeneratorTest extends TestCase
 		return [
 			'database with all attributes' => [
 				new Database('foo', new DatabaseOptions('utf8mb4', 'utf8mb4_general_ci', 'bar')),
-				'CREATE DATABASE foo CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci',
+				'CREATE DATABASE foo CHARACTER SET = \'utf8mb4\' COLLATE = \'utf8mb4_general_ci\' COMMENT = \'bar\'',
 			],
 			'database with only charset' => [
 				new Database('foo', new DatabaseOptions('utf8mb4', null, null)),
-				'CREATE DATABASE foo CHARACTER SET utf8mb4',
+				'CREATE DATABASE foo CHARACTER SET = \'utf8mb4\'',
 			],
 		];
 	}

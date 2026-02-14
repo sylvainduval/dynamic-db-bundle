@@ -32,7 +32,7 @@ class TableQueryGenerator implements TableQueryGeneratorInterface
 		}
 		$query .= \implode(', ', $fieldsList);
 
-		return ')' . $query;
+		return $query . ')';
 	}
 
 	public function generateDeleteTable(Domain\Table $table): string

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SylvainDuval\DynamicDbBundle\Schema\MySql\Field;
+namespace SylvainDuval\DynamicDbBundle\Schema\MariaDb\Field;
 
 use InvalidArgumentException;
 use SylvainDuval\DynamicDbBundle\Domain\Field\Date;
@@ -28,7 +28,7 @@ final class DateFieldGenerator implements FieldDefinitionGeneratorInterface
 			$fieldDefinition .= ' DEFAULT NULL';
 		}
 		if ($field->defaultCurrent === true) {
-			$fieldDefinition .= ' DEFAULT (CURDATE())';
+			$fieldDefinition .= ' DEFAULT NOW()';
 		}
 
 		return $fieldDefinition;

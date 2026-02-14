@@ -1,0 +1,9 @@
+.git
+.gitignore
+vendor/
+.php-cs-fixer.cache
+.phpunit.result.cache
+*.md
+composer.lock
+.env.test
+.env.test.dist
